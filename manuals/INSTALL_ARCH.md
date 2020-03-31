@@ -56,22 +56,18 @@ To create partitions, you can use any tool that is convenient for you, such as *
 cfdisk /dev/sda
 ```
 
-Format the LUKS partition:
+Format and open the LUKS partition:
 ```
 cryptsetup luksFormat /dev/sda2
-```
-
-Open the LUKS partition:
-```
 cryptsetup open /dev/sda2 cryptlvm
 ```
 
-Create LVM physical volume:
+Create LVM physical volume (PV):
 ```
 pvcreate /dev/mapper/cryptlvm
 ```
 
-Create LVM volume group:
+Create LVM volume group (VG):
 ```
 vgcreate vg00 /dev/mapper/cryptlvm
 ```
@@ -93,18 +89,17 @@ lvcreate -n home -l 100%FREE vg00
 Format the partitions:
 ```
 mkfs.fat -F32 /dev/sda1
-mkswap /dev/mapper/vg00-swap
-mkfs.ext4 /dev/mapper/vg00-root
-mkfs.ext4 /dev/mapper/vg00-home
+mkswap -L swap /dev/mapper/vg00-swap
+mkfs.ext4 -L root /dev/mapper/vg00-root
+mkfs.ext4 -L home/dev/mapper/vg00-home
 ```
 
 Mount the file systems:
 ```
 swapon /dev/mapper/vg00-swap
 mount /dev/mapper/vg00-root /mnt
-mkdir /mnt/home
+mkdir /mnt/{home,boot}
 mount /dev/mapper/vg00-home /mnt/home
-mkdir /mnt/boot
 mount /dev/sda1 /mnt/boot
 ```
 
