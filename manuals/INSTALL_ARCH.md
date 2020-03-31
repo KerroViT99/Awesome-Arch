@@ -72,7 +72,7 @@ Create LVM volume group (VG):
 vgcreate vg00 /dev/mapper/cryptlvm
 ```
 
-Create LVM logical volumes:
+Create LVM logical volumes (LV):
 
 | Logical Volume | Size            | Description    |
 |:---------------|:----------------|:---------------|
@@ -91,7 +91,7 @@ Format the partitions:
 mkfs.fat -F32 /dev/sda1
 mkswap -L swap /dev/mapper/vg00-swap
 mkfs.ext4 -L root /dev/mapper/vg00-root
-mkfs.ext4 -L home/dev/mapper/vg00-home
+mkfs.ext4 -L home /dev/mapper/vg00-home
 ```
 
 Mount the file systems:
