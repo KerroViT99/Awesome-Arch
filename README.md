@@ -11,7 +11,8 @@
 
 <a name="into_the_plan"></a>
 ## Into the plan
-- [X] Write instructions for manual installation of Arch Linux (UEFI, LUKS on LVM)
+- [X] Write instructions for manual installation of Arch Linux
+    - [X] LUKS on LVM
 - [ ] Write an automatic installation script for Arch Linux
 
 <a name="web_sites"></a>
