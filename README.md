@@ -14,6 +14,7 @@
 
 - [X] Write instructions for manual installation of Arch Linux
     - [X] LUKS on LVM
+    - [ ] LVM on LUKS
 - [ ] Write an automatic installation script for Arch Linux
 
 <a name="web_sites"></a>
