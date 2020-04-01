@@ -1,4 +1,4 @@
-# Installation guide for Arch Linux (in development)
+# Installation guide for Arch Linux
 
 ### Preparing for installation
 
