@@ -18,7 +18,7 @@
 - [ ] Write an automatic installation script for Arch Linux
 
 <a name="web_sites"></a>
-## Web Sites:
+## Web Sites
 
 * https://www.archlinux.org/  - Official website of Arch Linux
 * https://wiki.archlinux.org/ - Official Arch Linux wiki
