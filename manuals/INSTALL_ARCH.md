@@ -1,6 +1,6 @@
 ## Installation guide for Arch Linux
 
-##### 1. Preparing for installation
+#### 1. Preparing for installation
 
 Set the keyboard layout:
 ```
@@ -14,7 +14,7 @@ ls /sys/firmware/efi/efivars
 If the output of this command is not empty, the system is loaded in UEFI mode.
 Otherwise the system is loaded in BIOS mode.
 
-##### 2. Setting up an Internet connection
+#### 2. Setting up an Internet connection
 
 * WiFi:
 ```
@@ -28,7 +28,7 @@ Check your Internet connection:
 ping archlinux.org
 ```
 
-##### 3. Setting the date and time
+#### 3. Setting the date and time
 
 Update the system clock:
 ```
@@ -42,9 +42,9 @@ Check that the time setting is correct:
 timedatectl
 ```
 
-##### 4. Partition the disks
+#### 4. Partition the disks
 
-* LVM on LUKS:
+##### 4.1. LVM on LUKS:
 
 | Partition | Type             | Size                 | Description    |
 |:----------|:-----------------|:---------------------|:---------------|
@@ -103,12 +103,14 @@ mount /dev/mapper/vg00-home /mnt/home
 mount /dev/sda1 /mnt/boot
 ```
 
+##### 4.2. LVM on LUKS:
+
 Check that the mount points are correct:
 ```
 lsblk
 ```
 
-##### 5. Installing base system
+#### 5. Installing base system
 
 Install essential packages:
 ```
@@ -125,7 +127,7 @@ Generate an **fstab** file:
 genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
-##### 6. Chroot to your system
+#### 6. Chroot to your system
 
 Log in to the created environment:
 ```
@@ -134,7 +136,7 @@ arch-chroot /mnt
 
 ## Configuration your system
 
-##### 1. Time zone
+#### 1. Time zone
 
 Set the time zone:
 ```
@@ -146,9 +148,9 @@ Generate an **/etc/adjtime** file:
 hwclock --systohc
 ```
 
-##### 2. Localization
+#### 2. Localization
 
-Uncomment en_US.UTF-8 UTF-8 and other needed locales in /etc/locale.gen, and generate them with:
+Uncomment en_US.UTF-8 UTF-8 and other needed locales in **/etc/locale.gen**, and generate them with:
 ```
 locale-gen
 ```
@@ -159,7 +161,7 @@ echo "LANG=en_US.UTF-8" > /etc/locale.conf
 echo "KEYMAP=ru\nFONT=cyr-sun16" > /etc/vconsole.conf
 ```
 
-##### 3. Network configuration
+#### 3. Network configuration
 
 ```
 echo <hostname> > /etc/hostname
@@ -168,7 +170,7 @@ echo <hostname> > /etc/hostname
 echo "127.0.0.1  localhost\n::1 localhost\n127.0.1.1   <hostname>.localdomain  <hostname>" >> /etc/hosts
 ```
 
-##### 4. Initramfs
+#### 4. Initramfs
 
 Configure hooks in /etc/mkinitcpio.conf as follows:
 
@@ -179,19 +181,19 @@ And recreate the initramfs image:
 mkinitcpio -P
 ```
 
-##### 5. Root password
+#### 5. Root password
 
 Set the root password:
 ```
 passwd root
 ```
-##### 6. Installing systemd-boot
+#### 6. Installing systemd-boot
 
 ```
 bootctl install
 ```
 
-##### 7. Reboot
+#### 7. Reboot
 
 ```
 exit
