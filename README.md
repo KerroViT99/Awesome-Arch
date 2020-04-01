@@ -11,6 +11,7 @@
 
 <a name="into_the_plan"></a>
 ## Into the plan
+
 - [X] Write instructions for manual installation of Arch Linux
     - [X] LUKS on LVM
 - [ ] Write an automatic installation script for Arch Linux
@@ -23,6 +24,7 @@
 
 <a name="installing_arch_linux"></a>
 ## Installing Arch Linux
+
 There are 2 options for installing Arch Linux:
 * [Manual](https://github.com/KerroViT99/Awesome-Arch/blob/master/manuals/INSTALL_ARCH.md)
 * Automatic (using a script) (script in development)
@@ -31,12 +33,9 @@ There are 2 options for installing Arch Linux:
 ## Adding a local repository
 
 In **/etc/pacman.conf** add:
-
 ```
-...
 [kerrovit-repo]
 SigLevel = Optional TrustAll
 Server = file:///path/to/kerrovit-repo/$arch
-...
 ```
-by replacing **/path/to/** with the path to the ***kerrovit-repo*** repository
+by replacing **/path/to/** with the path to the **kerrovit-repo** repository
