@@ -21,7 +21,10 @@ Otherwise the system is loaded in BIOS mode.
 wifi-menu
 ```
 
-* Cable connection
+* Cable connection:
+
+```
+```
 
 Check your Internet connection:
 ```
@@ -80,30 +83,41 @@ Create LVM logical volumes (LV):
 | root           | 25 GB           | Root partition |
 | home           | Remaining space | Home partition |
 
+```swap``` partition:
 ```
 lvcreate -n swap -L <Amount_of_RAM> vg00
-lvcreate -n root -L 25G vg00
-lvcreate -n home -l 100%FREE vg00
+mkswap -L swap /dev/mapper/vg00-swap
+swapon /dev/mapper/vg00-swap
 ```
 
-Format the partitions:
+```root``` partition:
+```
+lvcreate -n root -L 25G vg00
+mkfs.ext4 -L root /dev/mapper/vg00-root
+mount /dev/mapper/vg00-root /mnt
+```
+
+```home``` partition:
+```
+lvcreate -n home -l 100%FREE vg00
+mkfs.ext4 -L home /dev/mapper/vg00-home
+mkdir /mnt/home
+mount /dev/mapper/vg00-home /mnt/home
+```
+
+```boot``` partition:
 ```
 mkfs.fat -F32 /dev/sda1
-mkswap -L swap /dev/mapper/vg00-swap
-mkfs.ext4 -L root /dev/mapper/vg00-root
-mkfs.ext4 -L home /dev/mapper/vg00-home
-```
-
-Mount the file systems:
-```
-swapon /dev/mapper/vg00-swap
-mount /dev/mapper/vg00-root /mnt
-mkdir /mnt/{home,boot}
-mount /dev/mapper/vg00-home /mnt/home
+mkdir /mnt/boot
 mount /dev/sda1 /mnt/boot
 ```
 
 ##### 4.2. LVM on LUKS:
+
+| Partition | Type             | Size                 | Description    |
+|:----------|:-----------------|:---------------------|:---------------|
+| sda1      | EFI System       | 500 MB               | Boot partition |
+| sda2      | Linux filesystem | Remaining free space | LVM partition  |
 
 Check that the mount points are correct:
 ```
