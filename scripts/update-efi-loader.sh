@@ -1,6 +1,8 @@
 #!/bin/bash
 
-echo -n "your cmdline" > /tmp/cmdline
+$cmdline = ""
+
+echo -n $cmdline > /tmp/cmdline
 
 objcopy \
 --add-section .osrel="/usr/lib/os-release" --change-section-vma .osrel=0x20000 \

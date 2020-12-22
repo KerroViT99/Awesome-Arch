@@ -18,12 +18,8 @@ Otherwise the system is loaded in BIOS mode.
 
 * WiFi:
 ```
-wifi-menu
-```
-
-* Cable connection:
-
-```
+iwctl
+station <wireless_adapter> connect <ssid>
 ```
 
 Check your Internet connection:
@@ -199,7 +195,7 @@ mkinitcpio -P
 
 Set the root password:
 ```
-passwd root
+passwd
 ```
 #### 6. Installing systemd-boot
 
